@@ -31,10 +31,6 @@ variable "tfstate_resource_group_name" {
   description = "This value is propulated by the rover"
 }
 
-variable "diagnostics_definition" {
-  default = {}
-}
-
 variable "landingzone" {
   default = {
     backend_type        = "azurerm"
