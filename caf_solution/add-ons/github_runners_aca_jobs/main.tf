@@ -14,6 +14,10 @@ terraform {
       source  = "hashicorp/azuread"
       version = ">= 2.7.0"
     }
+    azurecaf = {
+      source  = "aztfmod/azurecaf"
+      version = ">= 5.7.2"
+    }
   }
   required_version = ">= 1.3.7"
 }
