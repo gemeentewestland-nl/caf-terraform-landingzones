@@ -2,6 +2,10 @@ module "caf" {
   source  = "aztfmod/caf/azurerm"
   version = ">=5.7.2"
 
+  providers = {
+    azurerm.vhub = azurerm.vhub
+  }
+
   current_landingzone_key               = var.landingzone.key
   tenant_id                             = var.tenant_id
   tfstates                              = local.tfstates
