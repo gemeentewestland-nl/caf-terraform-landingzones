@@ -39,6 +39,7 @@ locals {
   combined = {
     keyvaults          = merge(local.remote.keyvaults, tomap({ (var.landingzone.key) = module.caf.keyvaults }))
     managed_identities = merge(local.remote.managed_identities, tomap({ (var.landingzone.key) = module.caf.managed_identities }))
+    resource_groups    = merge(local.remote.resource_groups, tomap({ (var.landingzone.key) = module.caf.resource_groups }))
   }
 
   client_config = data.azurerm_client_config.current
