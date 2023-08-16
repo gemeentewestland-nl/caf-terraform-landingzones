@@ -42,8 +42,6 @@ locals {
     resource_groups    = merge(local.remote.resource_groups, tomap({ (var.landingzone.key) = module.caf.resource_groups }))
   }
 
-  client_config = data.azurerm_client_config.current
-
   remote = {
     aad_apps = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].aad_apps, {}))
