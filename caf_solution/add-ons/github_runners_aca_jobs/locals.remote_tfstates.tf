@@ -41,6 +41,8 @@ locals {
     managed_identities = merge(local.remote.managed_identities, tomap({ (var.landingzone.key) = module.caf.managed_identities }))
   }
 
+  client_config = data.azurerm_client_config.current
+
   remote = {
     aad_apps = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].aad_apps, {}))
