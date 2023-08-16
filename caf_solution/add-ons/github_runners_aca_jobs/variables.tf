@@ -53,6 +53,9 @@ variable "rover_version" {}
 variable "logged_user_objectId" {
   default = null
 }
+variable "logged_aad_app_objectId" {
+  default = null
+}
 variable "tags" {
   type    = map(any)
   default = {}

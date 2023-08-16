@@ -4,6 +4,7 @@ resource "azapi_resource" "acae_runners_jobs" {
   name      = "ace-${var.settings.name}"
   parent_id = var.resource_group_id
   location  = var.location
+  tags      = local.tags
 
   schema_validation_enabled = false
   ignore_missing_property = true
@@ -14,13 +15,13 @@ resource "azapi_resource" "acae_runners_jobs" {
       appLogsConfiguration = {  
         destination = "log-analytics"
         logAnalyticsConfiguration = {
-          customerId = can(each.value.workspace_id) ? each.value.workspace_id : try(local.combined_objects_log_analytics[try(each.value.lz_key, local.client_config.landingzone_key)][each.value.workspace_key].id, local.combined_diagnostics.log_analytics[each.value.workspace_key].id)
-          sharedKey  = can(each.value.workspace_id) ? each.value.workspace_id : try(local.combined_objects_log_analytics[try(each.value.lz_key, local.client_config.landingzone_key)][each.value.workspace_key].id, local.combined_diagnostics.log_analytics[each.value.workspace_key].primary_shared_key)
+          customerId = var.workspace_id
+          sharedKey  = var.workspace_id
         }
       }
       vnetConfiguration = {
         dockerBridgeCidr       = null
-        infrastructureSubnetId = azurerm_subnet.subnet_runners_aca_jobs.id
+        infrastructureSubnetId = var.subnetid
         internal               = true
         platformReservedCidr   = null
         platformReservedDnsIP  = null
