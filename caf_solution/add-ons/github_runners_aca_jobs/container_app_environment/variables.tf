@@ -37,7 +37,3 @@ variable "combined_resources" {
 variable "diagnostics" {
   default = null
 }
-
-variable "dynamic_keyvault_secrets" {
-  default = {}
-}

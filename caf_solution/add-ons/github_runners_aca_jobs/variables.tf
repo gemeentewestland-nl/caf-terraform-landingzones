@@ -78,3 +78,6 @@ variable "vnets" {
 variable "container_apps" {
   default = {}
 }
+variable "dynamic_keyvault_secrets" {
+  default = {}
+}
