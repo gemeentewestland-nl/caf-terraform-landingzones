@@ -32,6 +32,11 @@ variable "log_analytics_workspace_id" {
   default     = null
 }
 
+variable "log_analytics_primary_shared_key" {
+  description = "Log Analytics Workspace primary shared key"
+  default     = null
+}
+
 variable "diagnostics" {
   default = null
 }

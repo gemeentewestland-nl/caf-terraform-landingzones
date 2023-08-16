@@ -16,7 +16,7 @@ resource "azapi_resource" "acae_runners_jobs" {
         destination = "log-analytics"
         logAnalyticsConfiguration = {
           customerId = var.log_analytics_workspace_id
-          sharedKey  = var.log_analytics_workspace_id
+          sharedKey  = var.log_analytics_primary_shared_key
         }
       }
       vnetConfiguration = {
