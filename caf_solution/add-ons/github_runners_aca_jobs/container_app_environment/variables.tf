@@ -31,9 +31,13 @@ variable "workspace_id" {
   description = "Log Analytics Workspace based workspace id"
   default     = null
 }
-variable "diagnostic_profiles" {
+variable "combined_resources" {
   default = {}
 }
 variable "diagnostics" {
   default = null
+}
+
+variable "dynamic_keyvault_secrets" {
+  default = {}
 }
