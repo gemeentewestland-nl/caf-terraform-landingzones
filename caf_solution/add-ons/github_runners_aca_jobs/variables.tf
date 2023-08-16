@@ -71,3 +71,7 @@ variable "network_security_group_definition" {
 variable "vnets" {
   default = {}
 }
+
+variable "container_apps" {
+  default = {}
+}

@@ -1,6 +1,6 @@
 resource "azapi_resource" "acaj_runners_jobs" {
   type      = "Microsoft.App/jobs@2023-04-01-preview"
-  name      = var.job_name
+  name      = var.settings.name #2-32 Lowercase letters, numbers, and hyphens. Start with letter and end with alphanumeric.
   location  = azurerm_resource_group.rg_runners_aca_jobs.location
   parent_id = azurerm_resource_group.rg_runners_aca_jobs.id
   tags      = {}
