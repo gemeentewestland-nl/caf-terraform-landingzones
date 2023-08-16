@@ -10,7 +10,7 @@ module "container_app_environments" {
   base_tags                           = try(local.global_settings.inherit_tags, false) ? try(local.remote.resource_groups[try(each.value.resource_group.lz_key, var.landingzone.key)][try(each.value.resource_group.key, each.value.resource_group_key)].tags, {}) : {}
   log_analytics_workspace_id          = can(each.value.log_analytics_workspace.id) ? try(local.diagnostics.log_analytics[each.value.diagnostic_log_analytics_workspace.key].id, each.value.log_analytics_workspace.id) : local.remote.diagnostics[try(each.value.log_analytics_workspace.lz_key, var.landingzone.key)].log_analytics[each.value.log_analytics_workspace.key].id
   log_analytics_primary_shared_key    = can(each.value.log_analytics_workspace.primary_shared_key) ? try(local.diagnostics.log_analytics[each.value.diagnostic_log_analytics_workspace.key].id, each.value.log_analytics_workspace.id) : local.remote.diagnostics[try(each.value.log_analytics_workspace.lz_key, var.landingzone.key)].log_analytics[each.value.log_analytics_workspace.key].primary_shared_key
-  subnet_id                           = can(each.value.subnet_id) || can(each.value.vnet_key) == false  ? try(each.value.subnet_id, null) : try(local.remote.vnets[try(each.value.vnet.lz_key, var.landingzone.key)][each.value.vnet.key].subnets[each.value.subnet_key].id)
+  subnet_id                           = can(each.value.subnet_id) || can(each.value.subnet) == false  ? try(each.value.subnet_id, null) : try(local.remote.vnets[try(each.value.subnet.lz_key, var.landingzone.key)][each.value.subnet.vnet_key].subnets[each.value.key].id)
   global_settings                     = local.global_settings
   settings                            = each.value
 

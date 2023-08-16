@@ -40,3 +40,7 @@ variable "log_analytics_primary_shared_key" {
 variable "diagnostics" {
   default = null
 }
+
+variable "subnet_id" {
+  default = null
+}

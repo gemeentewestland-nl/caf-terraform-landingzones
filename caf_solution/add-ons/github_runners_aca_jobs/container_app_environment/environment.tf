@@ -21,8 +21,8 @@ resource "azapi_resource" "acae_runners_jobs" {
       }
       vnetConfiguration = {
         dockerBridgeCidr       = null
-        infrastructureSubnetId = ""
-        internal               = true
+        infrastructureSubnetId = var.subnet_id
+        internal               = try(var.intenal, true)
         platformReservedCidr   = null
         platformReservedDnsIP  = null
       }
