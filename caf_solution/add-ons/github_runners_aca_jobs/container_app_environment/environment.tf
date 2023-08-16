@@ -15,13 +15,13 @@ resource "azapi_resource" "acae_runners_jobs" {
       appLogsConfiguration = {  
         destination = "log-analytics"
         logAnalyticsConfiguration = {
-          customerId = var.workspace_id
-          sharedKey  = var.workspace_id
+          customerId = var.log_analytics_workspace_id
+          sharedKey  = var.log_analytics_workspace_id
         }
       }
       vnetConfiguration = {
         dockerBridgeCidr       = null
-        infrastructureSubnetId = var.subnetid
+        infrastructureSubnetId = ""
         internal               = true
         platformReservedCidr   = null
         platformReservedDnsIP  = null

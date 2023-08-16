@@ -27,13 +27,11 @@ variable "base_tags" {
   default     = {}
 }
 
-variable "workspace_id" {
+variable "log_analytics_workspace_id" {
   description = "Log Analytics Workspace based workspace id"
   default     = null
 }
-variable "combined_resources" {
-  default = {}
-}
+
 variable "diagnostics" {
   default = null
 }
