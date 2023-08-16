@@ -13,6 +13,8 @@ variable "lower_resource_group_name" {
   description = "This value is propulated by the rover"
 }
 
+variable "tfstate_key" {}
+
 variable "tfstate_subscription_id" {
   description = "This value is propulated by the rover. subscription id hosting the remote tfstates"
 }
