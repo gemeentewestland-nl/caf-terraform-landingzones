@@ -15,7 +15,7 @@ module "container_app_environments" {
 
 }
 
-output "container_apps" {
+output "container_app_environments" {
   value = module.container_app_environments
 }
 
