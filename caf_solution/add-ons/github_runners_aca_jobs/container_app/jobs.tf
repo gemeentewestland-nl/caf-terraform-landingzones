@@ -1,4 +1,4 @@
-resource "azapi_resource" "acaj_runners_jobs" {
+resource "azapi_resource" "container_app_job" {
   type      = "Microsoft.App/jobs@2023-04-01-preview"
   name      = var.settings.name #2-32 Lowercase letters, numbers, and hyphens. Start with letter and end with alphanumeric.
   location  = azurerm_resource_group.rg_runners_aca_jobs.location
@@ -18,7 +18,7 @@ resource "azapi_resource" "acaj_runners_jobs" {
   body = jsonencode({
     properties = {
       environmentId       = azapi_resource.acae_runners_jobs.id
-      workloadProfileName = var.job_workload_profile_name
+      workloadProfileName = var.settings.workload_profile_name
       configuration = {
         secrets = [
           {
@@ -27,50 +27,34 @@ resource "azapi_resource" "acaj_runners_jobs" {
           }
         ]
         triggerType           = "Event"
-        replicaTimeout        = var.job_replica_timeout
-        replicaRetryLimit     = var.job_replica_retry_limit
+        replicaTimeout        = var.settings.replica_timeout
+        replicaRetryLimit     = var.settings.replica_retry_limit
         manualTriggerConfig   = null
         scheduleTriggerConfig = null
         registries            = null
         dapr                  = null
         eventTriggerConfig = {
           replicaCompletionCount = null
-          parallelism            = var.job_parallelism
+          parallelism            = var.settings.parallelism
           scale = {
-            minExecutions   = var.job_scale_min_executions
-            maxExecutions   = var.job_scale_max_executions
-            pollingInterval = var.job_scale_polling_interval
-            rules = [
-              {
-                name = "github-runner"
-                type = "github-runner"
-                metadata = {
-                  owner       = var.gh_owner
-                  repos       = var.gh_repository
-                  runnerScope = var.gh_scope
-                }
-                auth = [
-                  {
-                    secretRef        = var.gh_pat_secret_name
-                    triggerParameter = "personalAccessToken"
-                  }
-                ]
-              }
-            ]
+            minExecutions   = var.settings.scale_min_executions
+            maxExecutions   = var.settings.scale_max_executions
+            pollingInterval = var.settings.scale_polling_interval
+            rules           = var.settings.rules
           }
         }
       }
       template = {
         containers = [
           {
-            image   = var.job_image
+            image   = var.settings.image
             name    = "ghrunnersacajobs"
             command = null
             args    = null
-            env     = var.env_variables
+            env     = var.settings.env
             resources = {
-              cpu    = var.job_cpu
-              memory = var.job_memory
+              cpu    = var.settings.cpu
+              memory = var.settings.memory
             }
             volumeMounts = null
           }

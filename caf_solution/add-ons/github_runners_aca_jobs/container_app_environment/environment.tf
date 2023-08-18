@@ -1,5 +1,5 @@
 
-resource "azapi_resource" "acae_runners_jobs" {
+resource "azapi_resource" "container_app_environment" {
   type      = "Microsoft.App/managedEnvironments@2023-04-01-preview"
   name      = "ace-${var.settings.name}"
   parent_id = var.resource_group_id
