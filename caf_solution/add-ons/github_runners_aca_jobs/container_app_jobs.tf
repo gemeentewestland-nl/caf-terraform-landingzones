@@ -1,6 +1,6 @@
 module "container_app_jobs" {
   source     = "./container_app_job"
-  for_each   = local.container_app_jobs
+  for_each   = var.container_app_jobs
 
   name                                = each.value.name
   container_app_environment_id        = can(each.value.container_app_environment_id) ? each.value.container_app_environment_id : module.container_app_environments[try(each.value.lz_key, local.client_config.landingzone_key)][each.value.container_app_environment_key].id
