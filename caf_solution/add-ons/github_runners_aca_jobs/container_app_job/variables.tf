@@ -8,10 +8,18 @@ variable "location" {
   type        = string
 }
 
+variable "resource_group_id" {
+  description = "(Required) The id of the resource group in which to create the Azure Container Environment. Changing this forces a new resource."
+}
+
 variable "global_settings" {
   description = "Global settings object when the resource is deploye in landing zones context."
   default     = null
   type        = any
+}
+
+variable "client_config" {
+  
 }
 
 variable "settings" {
@@ -26,3 +34,4 @@ variable "base_tags" {
   type        = map(any)
   default     = {}
 }
+

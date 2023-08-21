@@ -1,13 +1,17 @@
 resource "azapi_resource" "container_app_job" {
-  type      = "Microsoft.App/jobs@2023-04-01-preview"
-  name      = var.settings.name #2-32 Lowercase letters, numbers, and hyphens. Start with letter and end with alphanumeric.
-  location  = azurerm_resource_group.rg_runners_aca_jobs.location
-  parent_id = azurerm_resource_group.rg_runners_aca_jobs.id
+  type      = "Microsoft.App/jobs@2023-05-02-preview"
+  name      = "acaj-${var.settings.name}" #2-32 Lowercase letters, numbers, and hyphens. Start with letter and end with alphanumeric.
+  location  = var.location
+  parent_id = var.resource_group_id
   tags      = local.tags
 
-  identity {
-    type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.uai_runners_aca_jobs.id]
+  dynamic "identity" {
+    for_each = try(var.settings.identity, false) == false ? [] : [1]
+
+    content {
+      type         = var.settings.identity.type
+      identity_ids = local.managed_identities
+    }
   }
 
   # Need to set to false because at the moment only 2022-11-01-preview is supported
