@@ -14,6 +14,7 @@ module "caf" {
   diagnostics                           = local.diagnostics
   logged_user_objectId                  = var.logged_user_objectId
   resource_groups                       = var.resource_groups
+  managed_identities                    = var.managed_identities
 
   remote_objects = {
     keyvaults          = local.remote.keyvaults
