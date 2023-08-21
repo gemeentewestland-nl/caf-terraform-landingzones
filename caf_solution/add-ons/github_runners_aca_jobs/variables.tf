@@ -88,3 +88,7 @@ variable "container_app_environments" {
 variable "dynamic_keyvault_secrets" {
   default = {}
 }
+
+variable "managed_identities" {
+  default = {}
+}
