@@ -1,7 +1,7 @@
 module "container_app_environments" {
   depends_on = [module.caf]
   source     = "./container_app_environment"
-  for_each   = var.container_apps
+  for_each   = var.container_app_environments
 
   name                                = each.value.name
   location                            = can(local.global_settings.regions[each.value.region]) ? local.global_settings.regions[each.value.region] : local.combined.resource_groups[try(each.value.resource_group.lz_key, var.landingzone.key)][try(each.value.resource_group.key, each.value.resource_group_key)].location
@@ -17,21 +17,4 @@ module "container_app_environments" {
 
 output "container_app_environments" {
   value = module.container_app_environments
-}
-
-
-module "container_apps" {
-  source     = "./container_app"
-  for_each   = local.compute.container_apps
-
-  name                                = each.value.name
-  location                            = can(local.global_settings.regions[each.value.region]) ? local.global_settings.regions[each.value.region] : local.combined.resource_groups[try(each.value.resource_group.lz_key, var.landingzone.key)][try(each.value.resource_group.key, each.value.resource_group_key)].location
-  resource_group_id                   = can(each.value.resource_group.id) || can(each.value.resource_group_id) ? try(each.value.resource_group.id, each.value.resource_group_id) : local.combined.resource_groups[try(each.value.resource_group.lz_key, var.landingzone.key)][try(each.value.resource_group_key, each.value.resource_group.key)].id
-  base_tags                           = try(local.global_settings.inherit_tags, false) ? try(local.remote.resource_groups[try(each.value.resource_group.lz_key, var.landingzone.key)][try(each.value.resource_group.key, each.value.resource_group_key)].tags, {}) : {}
-
-  settings                            = each.value
-}
-
-output "container_apps" {
-  value = module.container_apps
 }

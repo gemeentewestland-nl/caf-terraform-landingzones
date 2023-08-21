@@ -77,9 +77,14 @@ variable "vnets" {
   default = {}
 }
 
-variable "container_apps" {
+variable "container_app_jobs" {
   default = {}
 }
+
+variable "container_app_environments" {
+  default = {}
+}
+
 variable "dynamic_keyvault_secrets" {
   default = {}
 }
