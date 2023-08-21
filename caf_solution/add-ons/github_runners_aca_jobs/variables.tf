@@ -92,3 +92,14 @@ variable "dynamic_keyvault_secrets" {
 variable "managed_identities" {
   default = {}
 }
+
+variable "role_mapping" {
+  default = {}
+}
+
+variable "keyvaults" {
+  default = {}
+}
+variable "keyvault_access_policies" {
+  default = {}
+}

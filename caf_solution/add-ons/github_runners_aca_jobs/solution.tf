@@ -15,6 +15,9 @@ module "caf" {
   logged_user_objectId                  = var.logged_user_objectId
   resource_groups                       = var.resource_groups
   managed_identities                    = var.managed_identities
+  keyvaults                             = var.keyvaults
+  keyvault_access_policies              = var.keyvault_access_policies
+  role_mapping                          = var.role_mapping
 
   remote_objects = {
     keyvaults          = local.remote.keyvaults
