@@ -3,7 +3,7 @@ resource "azapi_resource" "container_app_job" {
   name      = var.settings.name #2-32 Lowercase letters, numbers, and hyphens. Start with letter and end with alphanumeric.
   location  = azurerm_resource_group.rg_runners_aca_jobs.location
   parent_id = azurerm_resource_group.rg_runners_aca_jobs.id
-  tags      = {}
+  tags      = local.tags
 
   identity {
     type         = "UserAssigned"
@@ -17,15 +17,10 @@ resource "azapi_resource" "container_app_job" {
 
   body = jsonencode({
     properties = {
-      environmentId       = azapi_resource.acae_runners_jobs.id
+      environmentId       = var.container_app_environment_id
       workloadProfileName = var.settings.workload_profile_name
       configuration = {
-        secrets = [
-          {
-            name  = var.gh_pat_secret_name
-            value = var.gh_pat_value
-          }
-        ]
+        secrets               = var.settings.secrets
         triggerType           = "Event"
         replicaTimeout        = var.settings.replica_timeout
         replicaRetryLimit     = var.settings.replica_retry_limit
