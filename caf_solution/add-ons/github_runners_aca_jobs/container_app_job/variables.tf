@@ -35,3 +35,7 @@ variable "base_tags" {
   default     = {}
 }
 
+variable "combined_resources" {
+  default     = {}
+}
+
