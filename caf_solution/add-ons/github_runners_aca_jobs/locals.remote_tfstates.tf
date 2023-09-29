@@ -37,9 +37,9 @@ locals {
   diagnostics     = data.terraform_remote_state.remote[var.landingzone.global_settings_key].outputs.objects[var.landingzone.global_settings_key].diagnostics
 
   combined = {
-    keyvaults          = merge(local.remote.keyvaults, tomap({ (var.landingzone.key) = module.caf.keyvaults }))
-    managed_identities = merge(local.remote.managed_identities, tomap({ (var.landingzone.key) = module.caf.managed_identities }))
-    resource_groups    = merge(local.remote.resource_groups, tomap({ (var.landingzone.key) = module.caf.resource_groups }))
+    keyvaults                = merge(local.remote.keyvaults, tomap({ (var.landingzone.key) = module.caf.keyvaults }))
+    managed_identities       = merge(local.remote.managed_identities, tomap({ (var.landingzone.key) = module.caf.managed_identities }))
+    resource_groups          = merge(local.remote.resource_groups, tomap({ (var.landingzone.key) = module.caf.resource_groups }))
   }
 
   remote = {
@@ -75,6 +75,4 @@ locals {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].diagnostics, {}))
     }
   }
-
-
 }
