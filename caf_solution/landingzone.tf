@@ -60,6 +60,7 @@ module "solution" {
   var_folder_path                       = var.var_folder_path
   webapp                                = local.webapp
   maps                                  = local.maps
+  resource_provider_registration        = var.resource_provider_registration
 
   diagnostics = {
     diagnostic_event_hub_namespaces = try(local.diagnostics.diagnostic_event_hub_namespaces, var.diagnostic_event_hub_namespaces)

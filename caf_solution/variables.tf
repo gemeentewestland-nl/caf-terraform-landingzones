@@ -265,3 +265,7 @@ variable "random_strings" {
 variable "data_sources" {
   default = {}
 }
+
+variable "resource_provider_registration" {
+  default = {}
+}
