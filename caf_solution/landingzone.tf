@@ -1,7 +1,8 @@
 module "solution" {
   #source  = "aztfmod/caf/azurerm"
   #version = "5.7.6"
-  source = "git::https://github.com/gemeentewestland-nl/terraform-azurerm-caf.git?ref=feature/create-v2-backup-policy"
+  #source = "git::https://github.com/gemeentewestland-nl/terraform-azurerm-caf.git?ref=feature/create-v2-backup-policy"
+  source = "git::https://github.com/gemeentewestland-nl/terraform-azurerm-caf.git?ref=westland"
 
   providers = {
     azurerm.vhub = azurerm.vhub
