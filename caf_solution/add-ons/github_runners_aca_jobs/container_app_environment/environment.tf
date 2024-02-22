@@ -1,6 +1,6 @@
 
 resource "azapi_resource" "container_app_environment" {
-  type      = "Microsoft.App/managedEnvironments@2023-05-02-preview"
+  type      = "Microsoft.App/managedEnvironments@2023-11-02-preview"
   name      = "acae-${var.settings.name}"
   parent_id = var.resource_group_id
   location  = var.location
