@@ -37,6 +37,8 @@ module "enterprise_scale" {
   subscription_id_connectivity     = local.subscription_id_connectivity
   subscription_id_management       = local.subscription_id_management
   subscription_id_identity         = local.subscription_id_identity
+
+  template_file_variables          = var.template_file_variables
 }
 
 locals {
