@@ -1,0 +1,3 @@
+variable "maintenance" {
+  default = {}
+}

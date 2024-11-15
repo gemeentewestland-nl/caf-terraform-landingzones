@@ -41,6 +41,7 @@ module "solution" {
   logged_user_objectId                  = var.logged_user_objectId
   logic_app                             = local.logic_app
   managed_identities                    = var.managed_identities
+  maintenance                           = var.maintenance
   messaging                             = local.messaging
   networking                            = local.networking
   purview                               = local.purview
