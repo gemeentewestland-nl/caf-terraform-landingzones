@@ -44,6 +44,7 @@ module "solution" {
   maintenance                           = var.maintenance
   messaging                             = local.messaging
   networking                            = local.networking
+  policies                              = var.policies
   purview                               = local.purview
   random_strings                        = var.random_strings
   remote_objects                        = local.remote
